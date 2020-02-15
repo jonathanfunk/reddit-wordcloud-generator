@@ -15,6 +15,7 @@
 
 .app-header {
   background-color: #2d3748;
+  background-image: url('/images/reddit-logo.png');
   min-height: 40vh;
   display: flex;
   flex-direction: column;
@@ -22,6 +23,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 2rem 0;
 }
 
 .app-section {
@@ -31,4 +33,10 @@
 .container {
   margin: 0 auto;
   max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 981px) {
 }

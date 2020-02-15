@@ -10,7 +10,7 @@ class App extends Component {
 
   render() {
     const options = {
-      colors: ['#2D3748', '#4A5568', '#718096', '#A0AEC0'],
+      colors: ['#1A202C', '#2D3748', '#4A5568', '#718096', '#A0AEC0'],
       enableTooltip: true,
       deterministic: false,
       fontFamily: 'oswald',
