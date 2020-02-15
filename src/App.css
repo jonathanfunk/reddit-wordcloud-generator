@@ -1,3 +1,18 @@
+/* Typography */
+
+.app-header h1 {
+  font-size: 54px;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin: 0;
+  color: #a0aec0;
+  font-size: 21px;
+}
+
+/* Layout */
+
 .app-header {
   background-color: #2d3748;
   min-height: 60vh;
@@ -9,14 +24,11 @@
   color: white;
 }
 
-/* Typography */
-
-.app-header h1 {
-  font-size: 54px;
-  font-weight: 600;
+.app-section {
+  padding: 5rem 0;
 }
 
-.subtitle {
-  margin: 0;
-  color: #a0aec0;
+.container {
+  margin: 0 auto;
+  max-width: 960px;
 }
