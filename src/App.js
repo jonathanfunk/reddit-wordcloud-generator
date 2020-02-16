@@ -3,7 +3,12 @@ import './App.css';
 import ReactWordcloud from 'react-wordcloud';
 import axios from 'axios';
 import words from './words';
-import { titleCleanUp, removeStopWords } from './utils';
+import {
+  titleCleanUp,
+  removeStopWords,
+  createWordMap,
+  sortByCount
+} from './utils/functions';
 
 const options = {
   colors: ['#1A202C', '#2D3748', '#4A5568', '#718096', '#A0AEC0'],
@@ -56,9 +61,12 @@ class App extends Component {
         return removeStopWords(title);
       });
       const combinedTitles = stopWordsRemoved.join(' ').split(' ');
-      console.log('Combined titles', combinedTitles);
+      const wordMap = createWordMap(combinedTitles);
+      const finalResults = sortByCount(wordMap);
 
-      this.setState({ loading: false });
+      console.log('Final Results', finalResults);
+
+      this.setState({ loading: false, words: finalResults });
     } catch (err) {
       console.log(err);
       this.setState({ loading: false });
@@ -94,7 +102,7 @@ class App extends Component {
         </header>
         <section className="app-section">
           <div className="container">
-            {/*<ReactWordcloud options={options} words={this.state.words} />*/}
+            <ReactWordcloud options={options} words={this.state.words} />
           </div>
         </section>
       </div>
