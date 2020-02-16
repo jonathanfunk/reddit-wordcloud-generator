@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import ReactWordcloud from 'react-wordcloud';
 import axios from 'axios';
-import words from './words';
 import {
   titleCleanUp,
   removeStopWords,
@@ -28,7 +27,7 @@ const options = {
 
 class App extends Component {
   state = {
-    words: words,
+    words: '',
     subreddit: '',
     loading: false
   };
@@ -102,7 +101,11 @@ class App extends Component {
         </header>
         <section className="app-section">
           <div className="container">
-            <ReactWordcloud options={options} words={this.state.words} />
+            {!this.state.words ? (
+              <h2>Submit a subreddit</h2>
+            ) : (
+              <ReactWordcloud options={options} words={this.state.words} />
+            )}
           </div>
         </section>
       </div>
