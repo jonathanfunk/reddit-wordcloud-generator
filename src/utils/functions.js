@@ -1,20 +1,22 @@
 import { stopwords } from './stopwords';
 
 //Convert all text to lowercase & remove punctuation marks
-export function titleCleanUp(titles) {
-  const cleanTitles = titles.map(title => {
-    return title
+function titleCleanUp(data) {
+  const filteredData = data.filter(dataItem => dataItem !== undefined);
+  const cleanData = filteredData.map(dataItem => {
+    console.log(dataItem);
+    return dataItem
       .toLowerCase()
       .replace(
         /(~|`|!|@|#|$|%|^|&|\*|{|}|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,
         ''
       );
   });
-  return cleanTitles;
+  return cleanData;
 }
 
 //Remove stop words (Example: I, the, and, etc)
-export function removeStopWords(title) {
+function removeStopWords(title) {
   const res = [];
   const words = title.split(' ');
   for (let i = 0; i < words.length; i++) {
@@ -26,7 +28,7 @@ export function removeStopWords(title) {
 }
 
 //Count words
-export function createWordMap(wordsArray) {
+function createWordMap(wordsArray) {
   const wordsMap = {};
   wordsArray.forEach(function(key) {
     if (wordsMap.hasOwnProperty(key)) {
@@ -38,7 +40,7 @@ export function createWordMap(wordsArray) {
   return wordsMap;
 }
 
-export function sortByCount(wordsMap) {
+function sortByCount(wordsMap) {
   // sort by count in descending order
   let sortedWordsMap = [];
   sortedWordsMap = Object.keys(wordsMap).map(function(key) {
@@ -52,4 +54,17 @@ export function sortByCount(wordsMap) {
     return b.total - a.total;
   });
   return sortedWordsMap;
+}
+
+//Combine functions
+export function generateWordCloudData(postData) {
+  //Clean, combine & sort posts
+  const cleanTitles = titleCleanUp(postData);
+  const stopWordsRemoved = cleanTitles.map(title => {
+    return removeStopWords(title);
+  });
+  const combinedTitles = stopWordsRemoved.join(' ').split(' ');
+  const wordMap = createWordMap(combinedTitles);
+  //Final step - sort by count
+  return sortByCount(wordMap);
 }

@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ReactWordcloud from 'react-wordcloud';
 import axios from 'axios';
-import {
-  titleCleanUp,
-  removeStopWords,
-  createWordMap,
-  sortByCount
-} from './utils/functions';
+import { generateWordCloudData } from './utils/functions';
 
 const options = {
   colors: ['#1A202C', '#2D3748', '#4A5568', '#718096', '#A0AEC0'],
@@ -29,7 +24,7 @@ class App extends Component {
   state = {
     words: '',
     redditData: '',
-    redditSelect: '',
+    redditSelect: 'subreddit',
     error: false,
     loading: false
   };
@@ -51,30 +46,42 @@ class App extends Component {
           `https://www.reddit.com/r/${this.state.redditData}.json`
         );
         const posts = postData.data.data.children;
-
-        //Combine posts by title
         const combinedPosts = [];
         posts.forEach(function(post) {
           combinedPosts.push(post.data.title);
         });
-
-        //Clean, combine & sort posts
-        const cleanTitles = titleCleanUp(combinedPosts);
-        const stopWordsRemoved = cleanTitles.map(title => {
-          return removeStopWords(title);
+        const subredditResults = generateWordCloudData(combinedPosts);
+        this.setState({
+          loading: false,
+          error: false,
+          words: subredditResults
         });
-        const combinedTitles = stopWordsRemoved.join(' ').split(' ');
-        const wordMap = createWordMap(combinedTitles);
-        const finalResults = sortByCount(wordMap);
-
-        this.setState({ loading: false, error: false, words: finalResults });
       } catch (err) {
         console.log(err);
         this.setState({ loading: false, error: true });
       }
     } else if (this.state.redditSelect === 'reddit-user') {
-      console.log('Reddit user!');
-      this.setState({ loading: false });
+      try {
+        //fetch user comments
+        const commentsData = await axios.get(
+          `https://www.reddit.com/user/${this.state.redditData}.json`
+        );
+        const comments = commentsData.data.data.children;
+        const combinedComments = [];
+        comments.forEach(function(comment) {
+          combinedComments.push(comment.data.body);
+        });
+        console.log('Combined comments', combinedComments);
+        const subredditResults = generateWordCloudData(combinedComments);
+        this.setState({
+          loading: false,
+          error: false,
+          words: subredditResults
+        });
+      } catch (err) {
+        console.log(err);
+        this.setState({ loading: false, error: true });
+      }
     }
   };
 
