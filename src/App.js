@@ -52,8 +52,11 @@ class App extends Component {
       });
 
       const cleanTitles = titleCleanUp(combinedPosts);
-
-      console.log('Clean Titles', cleanTitles);
+      const stopWordsRemoved = cleanTitles.map(title => {
+        return removeStopWords(title);
+      });
+      const combinedTitles = stopWordsRemoved.join(' ').split(' ');
+      console.log('Combined titles', combinedTitles);
 
       this.setState({ loading: false });
     } catch (err) {

@@ -142,9 +142,9 @@ export function titleCleanUp(titles) {
 }
 
 //Remove stop words (Example: I, the, and, etc)
-export function removeStopWords(str) {
+export function removeStopWords(title) {
   const res = [];
-  const words = str.split(' ');
+  const words = title.split(' ');
   for (let i = 0; i < words.length; i++) {
     if (!stopwords.includes(words[i])) {
       res.push(words[i]);
