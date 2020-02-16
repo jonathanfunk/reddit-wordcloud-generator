@@ -47,10 +47,13 @@ class App extends Component {
         );
         const posts = postData.data.data.children;
         const combinedPosts = [];
+
         posts.forEach(function(post) {
           combinedPosts.push(post.data.title);
         });
+
         const subredditResults = generateWordCloudData(combinedPosts);
+
         this.setState({
           loading: false,
           error: false,
@@ -60,23 +63,25 @@ class App extends Component {
         console.log(err);
         this.setState({ loading: false, error: true });
       }
-    } else if (this.state.redditSelect === 'reddit-user') {
+    } else if (this.state.redditSelect === 'user') {
       try {
         //fetch user comments
         const commentsData = await axios.get(
           `https://www.reddit.com/user/${this.state.redditData}.json`
         );
         const comments = commentsData.data.data.children;
+
         const combinedComments = [];
         comments.forEach(function(comment) {
           combinedComments.push(comment.data.body);
         });
-        console.log('Combined comments', combinedComments);
-        const subredditResults = generateWordCloudData(combinedComments);
+
+        const userCommentsResults = generateWordCloudData(combinedComments);
+
         this.setState({
           loading: false,
           error: false,
-          words: subredditResults
+          words: userCommentsResults
         });
       } catch (err) {
         console.log(err);
@@ -89,7 +94,11 @@ class App extends Component {
     return (
       <div className="app">
         <header className="app-header">
-          <h1>Subreddit Wordcloud Generator</h1>
+          <h1>
+            {this.state.redditSelect === 'subreddit'
+              ? 'Subreddit Wordcloud Generator'
+              : 'Reddit User Comment Wordcloud Generator'}
+          </h1>
           <p className="subtitle">
             Upload your favourite subreddit and get a visual of the most
             commonly used words
@@ -102,7 +111,7 @@ class App extends Component {
               onChange={this.onChange}
             >
               <option value="subreddit">Subreddit</option>
-              <option value="reddit-user">Reddit User</option>
+              <option value="user">Reddit User</option>
             </select>
             <input
               type="text"
@@ -123,18 +132,26 @@ class App extends Component {
           <p className="error">
             {!this.state.error
               ? ''
-              : `Darn! That subreddit doesn't appear to exist. Try submitting another subreddit.`}
+              : `Darn! No data available for this request. Try submitting another request.`}
           </p>
         </header>
         <section className="app-section">
           <div className="container">
             {!this.state.words ? (
-              <h2>Submit a subreddit</h2>
+              <h2>
+                Submit a {this.state.redditSelect} to generate a wordcloud
+              </h2>
             ) : (
               <ReactWordcloud options={options} words={this.state.words} />
             )}
           </div>
         </section>
+        <footer>
+          Designed & developed by{' '}
+          <a href="https://www.jon-funk.com/" target="_blank">
+            Jonathan Funk
+          </a>
+        </footer>
       </div>
     );
   }
