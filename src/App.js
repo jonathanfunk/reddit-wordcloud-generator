@@ -50,19 +50,23 @@ class App extends Component {
             Upload your favourite subreddit and get a visual of the most
             commonly used words
           </p>
-          <form className="subreddit-input" onSubmit={this.onSubmit}>
+          <form onSubmit={this.onSubmit}>
             <input
               type="text"
               name="subreddit"
               value={this.state.subreddit}
               onChange={this.onChange}
+              placeholder="Example: webdev"
+              class="subreddit-input"
             />
-            <button type="submit">Generate Wordcloud</button>
+            <button class="submit-button" type="submit">
+              Generate Wordcloud
+            </button>
           </form>
         </header>
         <section className="app-section">
           <div className="container">
-            <ReactWordcloud options={options} words={this.state.words} />
+            {/* <ReactWordcloud options={options} words={this.state.words} /> */}
           </div>
         </section>
       </div>
