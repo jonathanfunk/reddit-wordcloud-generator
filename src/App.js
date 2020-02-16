@@ -3,6 +3,7 @@ import './App.css';
 import ReactWordcloud from 'react-wordcloud';
 import axios from 'axios';
 import words from './words';
+import { titleCleanUp, removeStopWords } from './utils';
 
 const options = {
   colors: ['#1A202C', '#2D3748', '#4A5568', '#718096', '#A0AEC0'],
@@ -24,7 +25,7 @@ class App extends Component {
   state = {
     words: words,
     subreddit: '',
-    working: false
+    loading: false
   };
 
   onChange = e => {
@@ -36,13 +37,28 @@ class App extends Component {
 
   onSubmit = async e => {
     e.preventDefault();
+    this.setState({ loading: true });
     try {
-      const subredditPosts = await axios.get(
+      //fetch posts
+      const postData = await axios.get(
         `https://www.reddit.com/r/${this.state.subreddit}.json`
       );
-      console.log(subredditPosts);
+      const posts = postData.data.data.children;
+
+      //Combine posts by title
+      const combinedPosts = [];
+      posts.forEach(function(post) {
+        combinedPosts.push(post.data.title);
+      });
+
+      const cleanTitles = titleCleanUp(combinedPosts);
+
+      console.log('Clean Titles', cleanTitles);
+
+      this.setState({ loading: false });
     } catch (err) {
       console.log(err);
+      this.setState({ loading: false });
     }
   };
 
@@ -64,14 +80,18 @@ class App extends Component {
               placeholder="Example: webdev"
               className="subreddit-input"
             />
-            <button className="submit-button" type="submit">
-              Generate Wordcloud
+            <button
+              className="submit-button"
+              type="submit"
+              disabled={this.state.loading}
+            >
+              {this.state.loading ? `Fetching Posts` : `Generate Wordcloud`}
             </button>
           </form>
         </header>
         <section className="app-section">
           <div className="container">
-            {/* <ReactWordcloud options={options} words={this.state.words} /> */}
+            {/*<ReactWordcloud options={options} words={this.state.words} />*/}
           </div>
         </section>
       </div>

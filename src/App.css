@@ -79,5 +79,9 @@ input.subreddit-input:focus {
   border-color: #4a5568;
 }
 
+.submit-button:disabled {
+  cursor: not-allowed;
+}
+
 @media (min-width: 981px) {
 }
