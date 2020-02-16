@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ReactWordcloud from 'react-wordcloud';
+import axios from 'axios';
 import words from './words';
 
 const options = {
@@ -33,12 +34,16 @@ class App extends Component {
     });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
-    console.log(this.state.subreddit);
-    this.setState({
-      working: false
-    });
+    try {
+      const subredditPosts = await axios.get(
+        `https://www.reddit.com/r/${this.state.subreddit}.json`
+      );
+      console.log(subredditPosts);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
@@ -57,9 +62,9 @@ class App extends Component {
               value={this.state.subreddit}
               onChange={this.onChange}
               placeholder="Example: webdev"
-              class="subreddit-input"
+              className="subreddit-input"
             />
-            <button class="submit-button" type="submit">
+            <button className="submit-button" type="submit">
               Generate Wordcloud
             </button>
           </form>

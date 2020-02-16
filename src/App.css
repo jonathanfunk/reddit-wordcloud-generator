@@ -65,8 +65,8 @@ input.subreddit-input:focus {
   height: 70px;
   min-width: 200px;
   width: 33.3%;
-  background: #4a5568;
-  border: 2px solid #4a5568;
+  background: #1a202c;
+  border: 2px solid #1a202c;
   color: #fff;
   font-size: 16px;
   font-weight: 600;
@@ -75,8 +75,8 @@ input.subreddit-input:focus {
 }
 
 .submit-button:hover {
-  background: #1a202c;
-  border-color: #1a202c;
+  background: #4a5568;
+  border-color: #4a5568;
 }
 
 @media (min-width: 981px) {
