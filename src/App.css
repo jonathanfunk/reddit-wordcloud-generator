@@ -53,16 +53,26 @@ form {
   background: none;
 }
 
-input.subreddit-input {
+select.reddit-select {
+  height: 71px;
+  width: 120px;
+  font-size: 16px;
+  background: #edf2f7;
+  outline: #edf2f7 solid thick;
+  outline-offset: -7px;
+  -webkit-border-radius: 0px !important;
+}
+
+input.reddit-input {
   height: 70px;
-  width: 100%;
+  width: calc(100% - 120px);
   background: #fff;
   border: 2px solid #edf2f7;
   font-size: 16px;
   padding: 0 2rem;
 }
 
-input.subreddit-input:focus {
+input.reddit-input:focus {
   outline: none;
   border-color: #a0aec0;
 }
@@ -90,8 +100,8 @@ input.subreddit-input:focus {
 }
 
 @media (min-width: 981px) {
-  input.subreddit-input {
-    width: 66.6%;
+  input.reddit-input {
+    width: calc(66% - 120px);
   }
   .submit-button {
     width: 33.3%;

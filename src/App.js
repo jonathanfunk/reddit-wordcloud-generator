@@ -28,47 +28,53 @@ const options = {
 class App extends Component {
   state = {
     words: '',
-    subreddit: '',
+    redditData: '',
+    redditSelect: '',
     error: false,
     loading: false
   };
 
   onChange = e => {
-    e.preventDefault();
     this.setState({
-      subreddit: e.target.value
+      [e.target.name]: e.target.value
     });
+    console.log(this.state.redditSelect);
   };
 
   onSubmit = async e => {
     e.preventDefault();
     this.setState({ loading: true });
-    try {
-      //fetch posts
-      const postData = await axios.get(
-        `https://www.reddit.com/r/${this.state.subreddit}.json`
-      );
-      const posts = postData.data.data.children;
+    if (this.state.redditSelect === 'subreddit') {
+      try {
+        //fetch posts
+        const postData = await axios.get(
+          `https://www.reddit.com/r/${this.state.redditData}.json`
+        );
+        const posts = postData.data.data.children;
 
-      //Combine posts by title
-      const combinedPosts = [];
-      posts.forEach(function(post) {
-        combinedPosts.push(post.data.title);
-      });
+        //Combine posts by title
+        const combinedPosts = [];
+        posts.forEach(function(post) {
+          combinedPosts.push(post.data.title);
+        });
 
-      //Clean, combine & sort posts
-      const cleanTitles = titleCleanUp(combinedPosts);
-      const stopWordsRemoved = cleanTitles.map(title => {
-        return removeStopWords(title);
-      });
-      const combinedTitles = stopWordsRemoved.join(' ').split(' ');
-      const wordMap = createWordMap(combinedTitles);
-      const finalResults = sortByCount(wordMap);
+        //Clean, combine & sort posts
+        const cleanTitles = titleCleanUp(combinedPosts);
+        const stopWordsRemoved = cleanTitles.map(title => {
+          return removeStopWords(title);
+        });
+        const combinedTitles = stopWordsRemoved.join(' ').split(' ');
+        const wordMap = createWordMap(combinedTitles);
+        const finalResults = sortByCount(wordMap);
 
-      this.setState({ loading: false, error: false, words: finalResults });
-    } catch (err) {
-      console.log(err);
-      this.setState({ loading: false, error: true });
+        this.setState({ loading: false, error: false, words: finalResults });
+      } catch (err) {
+        console.log(err);
+        this.setState({ loading: false, error: true });
+      }
+    } else if (this.state.redditSelect === 'reddit-user') {
+      console.log('Reddit user!');
+      this.setState({ loading: false });
     }
   };
 
@@ -82,13 +88,22 @@ class App extends Component {
             commonly used words
           </p>
           <form onSubmit={this.onSubmit}>
+            <select
+              name="redditSelect"
+              className="reddit-select"
+              value={this.state.redditSelect}
+              onChange={this.onChange}
+            >
+              <option value="subreddit">Subreddit</option>
+              <option value="reddit-user">Reddit User</option>
+            </select>
             <input
               type="text"
-              name="subreddit"
-              value={this.state.subreddit}
+              name="redditData"
+              value={this.state.redditData}
               onChange={this.onChange}
               placeholder="Example: webdev"
-              className="subreddit-input"
+              className="reddit-input"
             />
             <button
               className="submit-button"
