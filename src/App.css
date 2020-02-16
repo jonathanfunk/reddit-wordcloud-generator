@@ -40,6 +40,11 @@
   justify-content: center;
 }
 
+p.error {
+  font-size: 14px;
+  height: 16px;
+}
+
 /* Form */
 form {
   width: 700px;

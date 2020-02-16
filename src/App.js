@@ -29,6 +29,7 @@ class App extends Component {
   state = {
     words: '',
     subreddit: '',
+    error: false,
     loading: false
   };
 
@@ -55,6 +56,7 @@ class App extends Component {
         combinedPosts.push(post.data.title);
       });
 
+      //Clean, combine & sort posts
       const cleanTitles = titleCleanUp(combinedPosts);
       const stopWordsRemoved = cleanTitles.map(title => {
         return removeStopWords(title);
@@ -63,12 +65,10 @@ class App extends Component {
       const wordMap = createWordMap(combinedTitles);
       const finalResults = sortByCount(wordMap);
 
-      console.log('Final Results', finalResults);
-
-      this.setState({ loading: false, words: finalResults });
+      this.setState({ loading: false, error: false, words: finalResults });
     } catch (err) {
       console.log(err);
-      this.setState({ loading: false });
+      this.setState({ loading: false, error: true });
     }
   };
 
@@ -98,6 +98,11 @@ class App extends Component {
               {this.state.loading ? `Fetching Posts` : `Generate Wordcloud`}
             </button>
           </form>
+          <p className="error">
+            {!this.state.error
+              ? ''
+              : `Darn! That subreddit doesn't appear to exist. Try submitting another subreddit.`}
+          </p>
         </header>
         <section className="app-section">
           <div className="container">
