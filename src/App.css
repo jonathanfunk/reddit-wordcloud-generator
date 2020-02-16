@@ -23,9 +23,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
-  padding: 2rem 0;
+  padding: 3rem 2rem;
 }
 
 .app-section {
@@ -38,6 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 2rem;
 }
 
 p.error {
@@ -47,14 +47,15 @@ p.error {
 
 /* Form */
 form {
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   border: none;
   background: none;
 }
 
 input.subreddit-input {
   height: 70px;
-  width: 66.6%;
+  width: 100%;
   background: #fff;
   border: 2px solid #edf2f7;
   font-size: 16px;
@@ -69,7 +70,7 @@ input.subreddit-input:focus {
 .submit-button {
   height: 70px;
   min-width: 200px;
-  width: 33.3%;
+  width: 100%;
   background: #1a202c;
   border: 2px solid #1a202c;
   color: #fff;
@@ -89,4 +90,10 @@ input.subreddit-input:focus {
 }
 
 @media (min-width: 981px) {
+  input.subreddit-input {
+    width: 66.6%;
+  }
+  .submit-button {
+    width: 33.3%;
+  }
 }
