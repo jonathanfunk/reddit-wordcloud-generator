@@ -97,7 +97,7 @@ class App extends Component {
           <h1>
             {this.state.redditSelect === 'subreddit'
               ? 'Subreddit Wordcloud Generator'
-              : 'Reddit User Comment Wordcloud Generator'}
+              : 'Reddit User Wordcloud Generator'}
           </h1>
           <p className="subtitle">
             {this.state.redditSelect === 'subreddit'
@@ -148,7 +148,7 @@ class App extends Component {
           </div>
         </section>
         <footer>
-          Designed & developed by{' '}
+          Created by{' '}
           <a href="https://www.jon-funk.com/" target="_blank">
             Jonathan Funk
           </a>
