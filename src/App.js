@@ -100,8 +100,9 @@ class App extends Component {
               : 'Reddit User Comment Wordcloud Generator'}
           </h1>
           <p className="subtitle">
-            Upload your favourite subreddit and get a visual of the most
-            commonly used words
+            {this.state.redditSelect === 'subreddit'
+              ? 'Submit a subreddit and get a visual of the most commonly used words in their recent posts'
+              : 'Submit a user and get a visual of the most commonly used words in their recent comments'}
           </p>
           <form onSubmit={this.onSubmit}>
             <select
@@ -126,7 +127,7 @@ class App extends Component {
               type="submit"
               disabled={this.state.loading}
             >
-              {this.state.loading ? `Fetching Posts` : `Generate Wordcloud`}
+              {this.state.loading ? `Fetching Data` : `Generate Wordcloud`}
             </button>
           </form>
           <p className="error">

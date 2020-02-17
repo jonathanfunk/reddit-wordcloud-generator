@@ -122,6 +122,8 @@ input.reddit-input:focus {
 
 .submit-button:disabled {
   cursor: not-allowed;
+  background: #1a202c;
+  border: 2px solid #1a202c;
 }
 
 @media (min-width: 981px) {
