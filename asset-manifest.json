@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/reddit-wordcloud-generator/static/css/main.b5a6332c.chunk.css",
+    "main.js": "/reddit-wordcloud-generator/static/js/main.3af20b58.chunk.js",
+    "main.js.map": "/reddit-wordcloud-generator/static/js/main.3af20b58.chunk.js.map",
+    "runtime-main.js": "/reddit-wordcloud-generator/static/js/runtime-main.a2a1ff1d.js",
+    "runtime-main.js.map": "/reddit-wordcloud-generator/static/js/runtime-main.a2a1ff1d.js.map",
+    "static/js/2.508ee5e6.chunk.js": "/reddit-wordcloud-generator/static/js/2.508ee5e6.chunk.js",
+    "static/js/2.508ee5e6.chunk.js.map": "/reddit-wordcloud-generator/static/js/2.508ee5e6.chunk.js.map",
+    "index.html": "/reddit-wordcloud-generator/index.html",
+    "precache-manifest.c27858c8bcb518a09ed4628916ddee77.js": "/reddit-wordcloud-generator/precache-manifest.c27858c8bcb518a09ed4628916ddee77.js",
+    "service-worker.js": "/reddit-wordcloud-generator/service-worker.js",
+    "static/css/main.b5a6332c.chunk.css.map": "/reddit-wordcloud-generator/static/css/main.b5a6332c.chunk.css.map",
+    "static/js/2.508ee5e6.chunk.js.LICENSE.txt": "/reddit-wordcloud-generator/static/js/2.508ee5e6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a2a1ff1d.js",
+    "static/js/2.508ee5e6.chunk.js",
+    "static/css/main.b5a6332c.chunk.css",
+    "static/js/main.3af20b58.chunk.js"
+  ]
+}
