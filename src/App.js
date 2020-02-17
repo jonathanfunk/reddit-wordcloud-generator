@@ -3,22 +3,7 @@ import './App.css';
 import ReactWordcloud from 'react-wordcloud';
 import axios from 'axios';
 import { generateWordCloudData } from './utils/functions';
-
-const options = {
-  colors: ['#1A202C', '#2D3748', '#4A5568', '#718096', '#A0AEC0'],
-  enableTooltip: true,
-  deterministic: false,
-  fontFamily: 'oswald',
-  fontSizes: [24, 96],
-  fontStyle: 'normal',
-  fontWeight: 'normal',
-  padding: 1,
-  rotations: 2,
-  rotationAngles: [0, 90],
-  scale: 'linear',
-  spiral: 'rectangular',
-  transitionDuration: 1000
-};
+import { options } from './utils/wordcloud-options';
 
 class App extends Component {
   state = {
@@ -149,8 +134,20 @@ class App extends Component {
         </section>
         <footer>
           Created by{' '}
-          <a href="https://www.jon-funk.com/" target="_blank">
+          <a
+            href="https://www.jon-funk.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Jonathan Funk
+          </a>
+          .{' '}
+          <a
+            href="https://github.com/jonathanfunk/reddit-wordcloud-generator"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Project Repo
           </a>
         </footer>
       </div>
