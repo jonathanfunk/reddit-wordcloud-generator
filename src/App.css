@@ -1,3 +1,5 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
 /* Typography */
 
 .app-header h1 {
@@ -21,18 +23,32 @@ p.error {
 /* Layout */
 
 .app {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100vh;
 }
 
 .app-header {
   background-color: #2d3748;
-  background-image: url('/images/reddit-logo.png');
+  background-image: url('./images/reddit-logo.png');
   min-height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   color: white;
   padding: 3rem 2rem;
@@ -40,14 +56,22 @@ p.error {
 
 .app-section {
   padding: 5rem 0;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
 
 .container {
   margin: 0 auto;
   max-width: 1200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   padding: 0 2rem;
 }
@@ -73,8 +97,13 @@ form {
   background: none;
   height: 140px;
   overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -112,6 +141,8 @@ input.reddit-input:focus {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
