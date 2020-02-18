@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/reddit-wordcloud-generator/precache-manifest.c27858c8bcb518a09ed4628916ddee77.js"
+  "/reddit-wordcloud-generator/precache-manifest.e6d4ca2eaba92b6e0a836a5a9897848f.js"
 );
 
 self.addEventListener('message', (event) => {

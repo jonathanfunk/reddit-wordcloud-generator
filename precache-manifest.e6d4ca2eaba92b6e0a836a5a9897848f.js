@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7fb2026cdc8d4423c70ee6b202eb5f30",
+    "revision": "c4d26dbc2d73ec33e814d7b3aa0f2191",
     "url": "/reddit-wordcloud-generator/index.html"
   },
   {
-    "revision": "dc683fb0e3f776bd30a3",
-    "url": "/reddit-wordcloud-generator/static/css/main.b5a6332c.chunk.css"
+    "revision": "8f39c7e7facda71a6eb0",
+    "url": "/reddit-wordcloud-generator/static/css/main.647cc0a2.chunk.css"
   },
   {
     "revision": "1cdf0bd806d4118124f0",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reddit-wordcloud-generator/static/js/2.508ee5e6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "dc683fb0e3f776bd30a3",
+    "revision": "8f39c7e7facda71a6eb0",
     "url": "/reddit-wordcloud-generator/static/js/main.3af20b58.chunk.js"
   },
   {
