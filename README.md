@@ -1,4 +1,5 @@
 # Reddit Wordcloud Generator
+![mockuper](https://user-images.githubusercontent.com/20465505/75264822-d4859a00-57a4-11ea-803c-3697f16acdbc.jpg)
 
 ## Project
 
